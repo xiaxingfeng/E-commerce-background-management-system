@@ -25,12 +25,16 @@
             </el-dialog>
             <!-- 修改地址 -->
             <el-dialog title="修改地址" :visible.sync="haha">
-                <span>省市区/县</span>
+
                 <el-form label-width="80px" class="demo-ruleForm">
-                    <!-- <el-form-item label="省市区/县" prop="order_id"> -->
-                    <el-cascader :options="cityOptions" @change="changeProvince" style="width:95%">
-                    </el-cascader>
-                    <!-- </el-form-item> -->
+
+                    <div id="jili">
+                        <span class="sheng">省市区/县</span>
+                        <el-cascader :options="cityOptions" @change="changeProvince" style="width:85%">
+                        </el-cascader>
+                    </div>
+
+
                     <el-form-item label="详细地址" prop="order_price">
                         <el-input></el-input>
                     </el-form-item>
@@ -209,6 +213,7 @@
                     },
                     method: 'put'
                 }).then((res) => {
+                    console.log(res)
                     if (res.data.meta.status == 201) {
                         this.$message.success('更新订单成功！')
                         this.fn()
@@ -271,6 +276,10 @@
         width: 130px;
     }
 
+    #jili {
+        display: flex;
+    }
+
     .input-with-select .el-input-group__prepend {
         background-color: #fff;
     }
@@ -278,6 +287,10 @@
     .input-with-select {
         width: 30%;
         margin-right: 20px;
+    }
+
+    .sheng {
+        margin-top: 10px;
     }
 
     .table {

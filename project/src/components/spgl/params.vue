@@ -20,7 +20,8 @@
                         <el-table-column type="expand">
                             <template>
                                 <span v-for="(item,index) in tableData" :key="index" class="centerRow">
-                                    <el-tag closable v-for="(item1,index) in item.attr_vals.split(',')" :key="index">
+                                    <el-tag closable v-for="(item1,index) in item.attr_vals.split(',')" :key="index"
+                                        @close='close(row.cat_id,row.attr_id,row.attr_vals,index)'>
                                         {{item1}}
                                     </el-tag>
                                 </span>
@@ -175,6 +176,9 @@
             };
         },
         methods: {
+            /*  close(a, b, c,index) {
+                 c.split.splice(index,1).join(',')
+             }, */
             add(dx) {
                 this.canshu = true;
                 this.obj = dx
@@ -244,7 +248,7 @@
                             sel: `many`
                         }
                     }).then((res) => {
-
+                        console.log(res)
                         this.tableData = res.data.data
                     })
                     Http({
